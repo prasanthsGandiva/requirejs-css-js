@@ -1,0 +1,60 @@
+
+<!-- @Author : Prasanth S <prasanthwebdeveloper@gmail.com> -->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+		<style>
+			body {
+				font-family: sans-serif;
+			}
+			.test {
+				margin: 1em 0;
+				padding: .5em;
+				border: 1px solid black;
+			}
+		</style>
+	</head>
+	<body>
+		<h1></h1>
+		<div>
+			<button id="button1">Test1</button>
+		</div>
+		<div class="test" id="test">
+			<p>After you click</p>
+		</div>
+		<div>
+			<button id="button2">Test2</button>
+		</div>
+		<div class="test" id="test2">
+			<p>After you click</p>
+		</div>
+		<div class="test" id="test3"></div>
+		<script src="require.js"></script>
+
+		<script>
+			(function(win){
+				var doc = win.document,
+				button = doc.getElementById('button1');
+				button.addEventListener('click', function() {
+					require(['css!css/sample.css'], function() {
+						alert('Stylesheet has been loaded');
+					});
+				}, false);
+				doc.getElementById('button2').addEventListener('click', function() {
+					require(['css!css/style.css','scripts/jquery', 'scripts/jquery.alpha'], function() {
+						
+						$('#test3').alpha();
+						alert('Stylesheet and script has been loaded');
+					});
+				}, false);
+				win.addEventListener('load', function() {
+					require(['scripts/jquery'], function() {
+						alert('Jquery script has been loaded');
+					});
+				}, false);
+			})(window);
+		</script>
+	</body>
+</html>
